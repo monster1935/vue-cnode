@@ -9,17 +9,37 @@
       </div>
       <div v-html="articleInfo.content"></div>
     </template>
-   
+    <back-top v-show="isShow" @click.native="onBackTopClick"></back-top>
   </div>
 </template>
 
 <script>
-  
+  import BackTop from './BackTop.vue';
   export default {
     name: 'Article',
     data () {
       return {
-
+        isShow: false
+      }
+    },
+    components: {
+      BackTop
+    },
+    mounted () {
+      let that = this;
+      document.getElementsByClassName('app-article')[0].addEventListener('scroll', function(e) {        
+        if (e.target.scrollTop > 500) {
+          that.isShow = true;
+        }
+      });
+    },
+    methods: {
+      onBackTopClick () {
+        this.scrollReset();
+      },
+      scrollReset () {
+        this.isShow = false;
+        document.getElementsByClassName('app-article')[0].scrollTop = 0;
       }
     },
     computed: {
@@ -28,6 +48,11 @@
       },
       createTime () {
         return new Date(this.articleInfo.create_at).Format('yyyy-MM-dd')
+      }
+    },
+    watch: {
+      articleInfo () {
+        this.scrollReset();
       }
     }
   }
@@ -41,7 +66,7 @@
         padding: 20px 0;
         background: #F6F6F6;
         margin-top: 20px;
-        border-left: 5px solid #000;
+        border-left: 5px solid #444;
       }
       .post-meta {
         text-align: center;

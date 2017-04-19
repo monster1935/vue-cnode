@@ -5,6 +5,9 @@
   text-align: center;
   background-color: #F6F6F6;
 }
+.el-table td, .el-table th {
+  height: 50px;
+}
 .el-table__header-wrapper thead div {
   background-color: #F6F6F6;
 }
@@ -26,8 +29,16 @@
 .el-menu--dark {
   background-color: #444;
 }
+.el-menu--dark .el-menu-item {
+  color: #bbb
+}
 .el-menu-item.is-active {
-  color: #eee
+  color: #fff;
+  background-color: #5e6369;
+}
+.el-menu--dark .el-menu-item:hover, 
+.el-menu--dark .el-submenu__title:hover {
+    background-color: #5e6369;
 }
 .el-pager li.active {
   border-color: #444;
