@@ -1,0 +1,56 @@
+
+
+/*用于覆盖element的样式*/
+.el-table th {
+  text-align: center;
+  background-color: #F6F6F6;
+}
+.el-table__header-wrapper thead div {
+  background-color: #F6F6F6;
+}
+.el-table th.isleaf {
+  border-bottom: 1px solid #F6F6F6
+}
+.el-table tr:hover{
+  background-color: #eee;
+}
+.el-table--enable-row-hover .el-table__body tr:hover>td {
+  background-color: #eee; 
+}
+.el-button--text {
+  color: #333;
+  &:hover,&:focus,&:visited {
+    color: #888
+  }
+}
+.el-menu--dark {
+  background-color: #444;
+}
+.el-menu-item.is-active {
+  color: #eee
+}
+.el-pager li.active {
+  border-color: #444;
+  background-color: #444;
+}
+.el-pager li:hover {
+  color: #000;
+}
+
+::-webkit-scrollbar {
+  width:12px;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+  border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius:10px;
+  background:rgba(0,0,0,0.1);
+  -webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background:rgba(255,0,0,0.4);
+}
