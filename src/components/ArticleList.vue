@@ -8,18 +8,23 @@
         prop="title"
         :label="categories">
         <template scope="scope">
+          <el-tag type="success" v-if="scope.row.top || scope.row.good">{{scope.row.top ? '置顶': '精华'}}</el-tag>
+          <el-tag :type="tag(scope.row.tab).type" v-else>{{tag(scope.row.tab).text}}</el-tag>
           <el-button type="text" @click="openTitle(scope.row)">{{scope.row.title}}</el-button>
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="pagination.currPage"
-      :page-size="pagination.pageSize"
-      layout="prev, pager, next, jumper"
-      :total="pagination.totalPages">
-    </el-pagination>
+    <div class="table-pagination">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="pagination.currPage"
+        :page-size="pagination.pageSize"
+        layout="prev, pager, next, jumper"
+        :total="pagination.totalPages">
+      </el-pagination>
+    </div>
+   
 	</div>
 </template>
 
@@ -38,6 +43,13 @@ export default {
         currPage: 1,
         pageSize: 10,
         totalPages: 500
+      },
+      categoryName: {
+        'all': { text: '全部', type: 'gray' },
+        'ask': { text: '问答', type: 'gray' },
+        'share': { text: '分享', type: 'gray' },
+        'good': { text: '精华', type: 'success' },
+        'job': { text: '招聘', type: 'gray' }
       }
     }
   },
@@ -50,6 +62,19 @@ export default {
     openTitle (row) {
       this.$store.commit('SET_ARTICLE', row);
     },
+    // 返回标签类型
+    tag (tag) {
+      if (this.categoryName[tag]) {
+        return { 
+          'text': this.categoryName[tag].text,
+          'type': this.categoryName[tag].type
+        }
+      } 
+      return { 
+        'text': '全部',
+        'type': 'gray'
+      }
+    },
     handleCurrentChange (val) {
       this.pagination.currPage = val;
       let url = '?tab=' + this.$store.state.categories + '&page=' + val;
@@ -60,14 +85,9 @@ export default {
     }
   },
   computed: {
+
     categories () {
-      let categoryName = {
-        all: '全部',
-        ask: '问答',
-        share: '分享',
-        good: '精华'
-      };
-      return categoryName[this.$store.state.categories];
+      return this.categoryName[this.$store.state.categories].text;
     },
     articleList () {
       if(this.$store.state.articleList && this.$store.state.articleList.length) {
@@ -87,3 +107,4 @@ export default {
   }
 }
 </script>
+

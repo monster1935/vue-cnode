@@ -4,9 +4,12 @@
     <template v-if="articleInfo.content">
       <div class="article-title">{{articleInfo.title}}</div>
       <div class="post-meta">
-        <span class="post-time">发表于{{createTime}} | </span>
-        <span class="reply-count" title="回复量"><i class="iconfont icon-comment"></i>{{articleInfo.reply_count}} | </span>
-        <span class="visit-count" title="浏览量"><i class="iconfont icon-view"></i>{{articleInfo.visit_count}}</span>
+       <!--  <span>作者：{{articleInfo.author.loginname}}</span>|
+        <span class="post-time">发表于{{createTime}}</span>|
+        <span class="reply-count" title="回复量"><i class="iconfont icon-comment"></i>{{articleInfo.reply_count}}</span>|
+        <span class="visit-count" title="浏览量"><i class="iconfont icon-view"></i>{{articleInfo.visit_count}}</span>|
+        <span>来自{{articleInfo.tab}}</span> -->
+        {{subTitle}}
       </div>
       <div v-html="articleInfo.content"></div>
     </template>
@@ -72,6 +75,23 @@
        */
       createTime () {
         return new Date(this.articleInfo.create_at).Format('yyyy-MM-dd')
+      },
+      subTitle () {
+        let res = [];
+        let categoryName = {
+          all: '全部',
+          share: '分享',
+          ask: '问答',
+          job: '招聘'
+        };
+        res.push('作者:' + this.articleInfo.author.loginname);
+        res.push('发表于:' + this.createTime);
+        res.push('浏览量:' + this.articleInfo.visit_count);
+        res.push('评论:' + this.articleInfo.reply_count);
+        if (this.articleInfo.tab) {
+          res.push('来自:' + categoryName[this.articleInfo.tab]); 
+        } 
+        return res.join('  ');
       }
     },
     watch: {
@@ -98,10 +118,9 @@
       }
       .post-meta {
         text-align: center;
-        font-size: 14px;
-        span,span i {
-          margin-right: 5px;
-        }
+        font-size: 12px;
+        color: #838383;
+        margin-top: 10px;
       }
       h1,h2,h3,h4,h5,h6{
           margin: 30px 0 15px;

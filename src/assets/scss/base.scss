@@ -8,6 +8,9 @@
 .el-table td, .el-table th {
   height: 50px;
 }
+.el-table .cell {
+  white-space: nowrap;
+}
 .el-table__header-wrapper thead div {
   background-color: #F6F6F6;
 }
@@ -47,7 +50,6 @@
 .el-pager li:hover {
   color: #000;
 }
-
 ::-webkit-scrollbar {
   width:12px;
 }

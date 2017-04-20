@@ -9,8 +9,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 Vue.use(ElementUI)
 
-//引入 
+//引入全局公有样式
 import './assets/scss/base.scss'
+import './assets/scss/custom.scss'
 
 // 引入Vuex作为全局状态管理
 import store from './store/store'

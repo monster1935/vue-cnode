@@ -48,13 +48,15 @@ html,body{
     background: #444;
   }
   .app-article-list {
-    flex: 0 0 400px;
+    flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
+    min-width: 600px;
     border-right: 1px solid #ddd
   }
   .app-article {
     flex: 1;
+    min-width: 600px;
     overflow-y: auto;
     padding: 0 40px;
   }

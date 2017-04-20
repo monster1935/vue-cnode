@@ -1,0 +1,11 @@
+/*用于全局的和业务相关的样式*/
+.table-pagination .el-pagination {
+  text-align: center;
+  padding: 2px 0;
+}
+.article-list-content table .el-button {
+  text-overflow: ellipsis;
+  max-width: 90%;
+  overflow: hidden;
+
+}
