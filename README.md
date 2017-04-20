@@ -3,7 +3,7 @@
 
 ## 图示
 
-![](http://oe7c74ud3.bkt.clouddn.com/cnode.png)
+![](http://oe7c74ud3.bkt.clouddn.com/vue_cnode.png)
 
 ## 在线预览
 
