@@ -24,6 +24,11 @@
 </template>
 
 <script>
+/**
+ * @params {Boolean} loading 文章列表的loading效果 默认true
+ * @params {Object} pagination 文章列表的分页信息
+ * 
+ */
 export default {
   name: 'article-list',
   data () {
@@ -37,9 +42,11 @@ export default {
     }
   },
   mounted () {
+    // 获取文章列表
     this.$store.dispatch('getArticleList', this.url);
   },
   methods: {
+    // 设置文章信息
     openTitle (row) {
       this.$store.commit('SET_ARTICLE', row);
     },
@@ -73,6 +80,7 @@ export default {
     articleList () {
       document.getElementsByClassName('app-article-list')[0].scrollTop = 0;
     },
+    // 文章列表类别发生变化后，设置分页信息为第一页
     categories () {
       this.pagination.currPage = 1;
     }

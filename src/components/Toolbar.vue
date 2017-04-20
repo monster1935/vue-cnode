@@ -8,7 +8,7 @@
       <el-menu-item index="all"><i class="el-icon-menu"></i>全部</el-menu-item>
       <el-menu-item index="good"><i class="el-icon-star-on"></i>精华</el-menu-item>
       <el-menu-item index="share"><i class="el-icon-share"></i>分享</el-menu-item>
-      <el-menu-item index="ask"><i class="el-icon-message"></i>问答</el-menu-item>
+      <el-menu-item index="ask"><i class="iconfont icon-ask"></i>问答</el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -22,6 +22,11 @@
       }
     },
     methods: {
+      /**
+       * 类别点击处理函数
+       * @param  {String} path 类别
+       * @return {[type]}      [description]
+       */
       onSelectChange (path) {
         this.$store.commit('SET_ARTICLE_CATEGORIES',path);
         let url = '?tab=' + path + '&page=1';

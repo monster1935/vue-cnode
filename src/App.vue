@@ -2,7 +2,7 @@
   <div id="app">
     <div class="app-toolbar">
       <toolbar></toolbar>
-      </div>
+    </div>
     <div class="app-article-list">
       <article-list></article-list>
     </div>
@@ -56,7 +56,7 @@ html,body{
   .app-article {
     flex: 1;
     overflow-y: auto;
-    padding: 0 20px;
+    padding: 0 40px;
   }
 }
 </style>

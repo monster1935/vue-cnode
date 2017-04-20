@@ -1,11 +1,12 @@
+<!-- 文章详情页组件 -->
 <template>
   <div class="article-content">
     <template v-if="articleInfo.content">
       <div class="article-title">{{articleInfo.title}}</div>
       <div class="post-meta">
         <span class="post-time">发表于{{createTime}} | </span>
-        <span class="reply-count" title="回复量"><i class="el-icon-star-on"></i>{{articleInfo.reply_count}} | </span>
-        <span class="visit-count" title="浏览量"><i class="el-icon-star-off"></i>{{articleInfo.visit_count}}</span>
+        <span class="reply-count" title="回复量"><i class="iconfont icon-comment"></i>{{articleInfo.reply_count}} | </span>
+        <span class="visit-count" title="浏览量"><i class="iconfont icon-view"></i>{{articleInfo.visit_count}}</span>
       </div>
       <div v-html="articleInfo.content"></div>
     </template>
@@ -15,6 +16,10 @@
 
 <script>
   import BackTop from './BackTop.vue';
+
+  /**
+   * @params {Boolean} isShow 控制回到顶部组件是否显示 默认flase
+   */
   export default {
     name: 'Article',
     data () {
@@ -27,6 +32,7 @@
     },
     mounted () {
       let that = this;
+      // 监听滚动条scroll事件，根据滚动条的高度判断是否需要出现回到顶部组件
       document.getElementsByClassName('app-article')[0].addEventListener('scroll', function(e) {        
         if (e.target.scrollTop > 500) {
           that.isShow = true;
@@ -36,23 +42,43 @@
       });
     },
     methods: {
+      /**
+       * 回到顶部组件点击事件监听
+       * @return {[type]} [description]
+       */
       onBackTopClick () {
         this.scrollReset();
       },
+      /**
+       * 回到顶部，滚动条重置方法
+       * @return {[type]} [description]
+       */
       scrollReset () {
         this.isShow = false;
         document.getElementsByClassName('app-article')[0].scrollTop = 0;
       }
     },
     computed: {
+      /**
+       * 返回store中文章信息
+       * @return {Object} 文章信息对象
+       */
       articleInfo () {
         return this.$store.state.articleInfo;
       },
+      /**
+       * 返回格式化后的文章创建日期
+       * @return {Date} 文章创建日期
+       */
       createTime () {
         return new Date(this.articleInfo.create_at).Format('yyyy-MM-dd')
       }
     },
     watch: {
+      /**
+       * 文章信息发生变化后，滚动条自动重置
+       * @return {[type]} [description]
+       */
       articleInfo () {
         this.scrollReset();
       }
