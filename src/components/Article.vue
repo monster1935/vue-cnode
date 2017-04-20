@@ -30,6 +30,8 @@
       document.getElementsByClassName('app-article')[0].addEventListener('scroll', function(e) {        
         if (e.target.scrollTop > 500) {
           that.isShow = true;
+        } else {
+          that.isShow = false;
         }
       });
     },
