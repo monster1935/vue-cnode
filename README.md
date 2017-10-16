@@ -7,7 +7,7 @@
 
 ## 在线预览
 
-[戳我](http://www.monster1935.site/vue-cnode)
+[戳我](https://monster1935.github.io/vue-cnode/#/)
 
 ## 已完成功能列表
 
